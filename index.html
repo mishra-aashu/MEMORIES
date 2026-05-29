@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You - A Box of Memories</title>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="A special dedication page filled with cozy moments, handwritten notes, and music. Built with love.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Italiana&family=Plus+Jakarta+Sans:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Sacramento&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Style Sheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- Welcome Overlay Screen -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="overlay-card">
+            <div class="envelope-icon">
+                <i class="fa-solid fa-envelope-open-text"></i>
+            </div>
+            <h2>You've Received a Memory Box</h2>
+            <p>Turn up your volume and open it to explore curated moments from your friend.</p>
+            <button id="openBoxBtn" class="open-btn">
+                <span>Open Memory Box</span>
+                <i class="fa-solid fa-heart"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Background Music Audio Tag -->
+    <!-- Using a beautiful, warm, ambient lo-fi piano track -->
+    <audio id="bgMusic" loop>
+        <source src="https://assets.codepen.io/4358584/Anitek_-_01_-_Kisses.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Main Container -->
+    <div class="app-container" id="mainApp" style="opacity: 0; pointer-events: none;">
+        <!-- Floating Elements Container -->
+        <div class="floating-container" id="floatingContainer"></div>
+
+        <!-- Decorative Top Border -->
+        <div class="top-garland">
+            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+        </div>
+
+        <!-- Header -->
+        <header class="app-header">
+            <h1 class="app-title">Curated Moments</h1>
+            <p class="app-subtitle">Hand-Delivered With Love</p>
+        </header>
+
+        <!-- Hero Section: The Portrait Watercolor Illustration -->
+        <section class="hero-showcase">
+            <div class="frame-container">
+                <div class="vintage-frame">
+                    <img src="assets/images/hero.jpeg" alt="Memories Attic Watercolor" class="hero-image">
+                    <div class="frame-shadow"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Music Controller Section -->
+        <section class="player-section">
+            <div class="music-card">
+                <div class="player-header">
+                    <span class="player-badge">NOW PLAYING</span>
+                    <h3 class="track-title">cozy_attic_vibes.mp3</h3>
+                </div>
+                
+                <!-- Cassette Skeuomorphic Animation -->
+                <div class="cassette-container" id="cassetteContainer">
+                    <div class="cassette-body">
+                        <div class="cassette-label">
+                            <span class="label-brand">MEMORIES</span>
+                            <div class="label-window">
+                                <div class="tape-reel reel-left" id="reelLeft">
+                                    <div class="spokes"></div>
+                                </div>
+                                <div class="tape-reel reel-right" id="reelRight">
+                                    <div class="spokes"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Audio Controls -->
+                <div class="player-controls">
+                    <button class="player-btn" id="prevTrackBtn" title="Rewind">
+                        <i class="fa-solid fa-backward-step"></i>
+                    </button>
+                    <button class="player-btn play-pause-btn" id="playPauseBtn" title="Play/Pause">
+                        <i class="fa-solid fa-pause" id="playIcon"></i>
+                    </button>
+                    <button class="player-btn" id="muteBtn" title="Mute/Unmute">
+                        <i class="fa-solid fa-volume-high" id="muteIcon"></i>
+                    </button>
+                </div>
+
+                <div class="volume-slider-container">
+                    <i class="fa-solid fa-volume-low"></i>
+                    <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="0.7" aria-label="Volume">
+                    <i class="fa-solid fa-volume-high"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Letter Section -->
+        <section class="letter-section">
+            <div class="parchment-letter">
+                <div class="pin"></div>
+                <div class="letter-content">
+                    <h2 class="letter-salutation" id="letterSalutation">Dear Friend,</h2>
+                    
+                    <p class="letter-paragraph" id="letterParagraph1">
+                        Discover the Magic of Personal Gifts. Explore our Signature 'Luxe Bleu' Collection. I wanted to share this little attic corner of peace, notes, and watercolor dreams with you.
+                    </p>
+                    
+                    <p class="letter-paragraph" id="letterParagraph2">
+                        Sometimes, in the rush of life, we forget to stop and appreciate the little things: a warm cup of tea, the view from a window overlooking a quiet village, the scratch of pencils on paper, and the secret notes we write just for ourselves.
+                    </p>
+                    
+                    <p class="letter-paragraph" id="letterParagraph3">
+                        Thank you for being part of my journey. Here's a cozy space just for you, whenever you need to take a deep breath and listen to some good music.
+                    </p>
+                    
+                    <div class="letter-signature">
+                        <p>Yours truly,</p>
+                        <p class="handwritten-sign">Your Friend</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Board: Post-it notes & Memories -->
+        <section class="board-section">
+            <h2 class="section-title">Memory Board</h2>
+            <p class="section-desc">Click on the notes to read secret messages or add your own memory below!</p>
+            
+            <div class="cork-board">
+                <!-- Pin 1 -->
+                <div class="board-note note-yellow" style="top: 10%; left: 8%; transform: rotate(-5deg);">
+                    <div class="note-pin pin-red"></div>
+                    <div class="note-inner">
+                        <span class="note-date">May 2026</span>
+                        <p>"Chapter 1: A New Friend? :)"</p>
+                    </div>
+                </div>
+
+                <!-- Pin 2 -->
+                <div class="board-note note-pink" style="top: 15%; right: 10%; transform: rotate(6deg);">
+                    <div class="note-pin pin-blue"></div>
+                    <div class="note-inner">
+                        <span class="note-date">Special Note</span>
+                        <p>Secret note write me for you...</p>
+                    </div>
+                </div>
+
+                <!-- Pin 3 (Polaroid Style photo) -->
+                <div class="board-polaroid" style="bottom: 10%; left: 15%; transform: rotate(4deg);">
+                    <div class="note-pin pin-green"></div>
+                    <div class="polaroid-image-container">
+                        <div class="polaroid-placeholder-svg">
+                            <i class="fa-solid fa-mug-hot"></i>
+                        </div>
+                    </div>
+                    <p class="polaroid-caption">Tea & Conversations ☕</p>
+                </div>
+
+                <!-- Pin 4 -->
+                <div class="board-note note-blue" style="bottom: 12%; right: 18%; transform: rotate(-8deg);">
+                    <div class="note-pin pin-yellow"></div>
+                    <div class="note-inner">
+                        <span class="note-date">Today</span>
+                        <p>You can edit this board. Click below to add a new memory note!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memory Adder Form -->
+            <div class="memory-adder-card">
+                <h3>Add a Memory to the Board</h3>
+                <form id="memoryForm" class="adder-form">
+                    <input type="text" id="memoryText" placeholder="Write a memory or note..." required maxlength="60">
+                    <select id="noteColor" aria-label="Choose Note Color">
+                        <option value="note-yellow">Yellow Note</option>
+                        <option value="note-pink">Pink Note</option>
+                        <option value="note-blue">Blue Note</option>
+                    </select>
+                    <button type="submit" class="add-note-btn">
+                        <i class="fa-solid fa-thumbtack"></i> Pin Memory
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Made with 🤍 for a special friend</p>
+            <p class="footer-sub">&copy; 2026 Memories Gift Box</p>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
