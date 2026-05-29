@@ -181,11 +181,120 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- 4. Interactive Memory Board Dragging & Pinning ---
     
-    // Apply draggable behaviors to existing board items
+    // Toast Notification System
+    function showToast(message) {
+        const toast = document.createElement('div');
+        toast.className = 'toast-notification';
+        toast.textContent = message;
+        document.body.appendChild(toast);
+        
+        setTimeout(() => {
+            toast.classList.add('show');
+        }, 50);
+        
+        setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 400);
+        }, 3000);
+    }
+
+    // Share Pinned Note Logic
+    function makeElementShareable(element) {
+        const shareBtn = element.querySelector('.note-share-btn');
+        if (!shareBtn) return;
+        
+        shareBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent dragging or card clicks
+            
+            let text = '';
+            const p = element.querySelector('.note-inner p') || element.querySelector('p');
+            if (p) {
+                text = p.textContent.trim();
+            } else {
+                const caption = element.querySelector('.polaroid-caption');
+                if (caption) text = caption.textContent.trim();
+            }
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'A Cozy Pinned Memory',
+                    text: `"${text}"`,
+                    url: window.location.href
+                }).catch(err => console.log('Share canceled/failed:', err));
+            } else {
+                navigator.clipboard.writeText(`"${text}" - Shared from: ${window.location.href}`)
+                    .then(() => {
+                        showToast('Memory copied to clipboard! Share it with your friend.');
+                    })
+                    .catch(err => {
+                        console.error('Clipboard copy failed:', err);
+                        showToast('Could not copy memory text.');
+                    });
+            }
+        });
+
+        // Prevent dragging when mousedown/touchstart on the share button itself
+        shareBtn.onmousedown = (e) => e.stopPropagation();
+        shareBtn.ontouchstart = (e) => e.stopPropagation();
+    }
+
+    // Apply draggable & shareable behaviors to existing board items
     const boardItems = document.querySelectorAll('.board-note, .board-polaroid');
     boardItems.forEach(item => {
         makeElementDraggable(item);
+        makeElementShareable(item);
     });
+
+    // Save/Download Board as Image
+    const downloadBoardBtn = document.getElementById('downloadBoardBtn');
+    if (downloadBoardBtn && corkBoard) {
+        downloadBoardBtn.addEventListener('click', () => {
+            if (typeof html2canvas === 'undefined') {
+                showToast('Renderer loading, please try again in a moment.');
+                return;
+            }
+
+            const originalText = downloadBoardBtn.innerHTML;
+            downloadBoardBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> Saving...';
+            downloadBoardBtn.disabled = true;
+
+            // Temporarily hide share buttons for a clean export
+            const shareBtns = corkBoard.querySelectorAll('.note-share-btn');
+            shareBtns.forEach(btn => btn.style.display = 'none');
+
+            html2canvas(corkBoard, {
+                useCORS: true,
+                allowTaint: true,
+                backgroundColor: '#8D6E63',
+                scale: 2 // Double resolution
+            }).then(canvas => {
+                // Restore share buttons
+                shareBtns.forEach(btn => btn.style.display = 'flex');
+
+                const link = document.createElement('a');
+                link.download = `memories_board_${new Date().toISOString().slice(0,10)}.jpg`;
+                link.href = canvas.toDataURL('image/jpeg', 0.95);
+                link.click();
+
+                downloadBoardBtn.innerHTML = originalText;
+                downloadBoardBtn.disabled = false;
+                showToast('Cozy board saved to your device! 📸');
+            }).catch(err => {
+                console.error('Error rendering board:', err);
+                shareBtns.forEach(btn => btn.style.display = 'flex');
+                downloadBoardBtn.innerHTML = originalText;
+                downloadBoardBtn.disabled = false;
+                showToast('Failed to save board as image.');
+            });
+        });
+
+        // Click empty space on cork board to trigger download/save
+        corkBoard.addEventListener('click', (e) => {
+            if (e.target === corkBoard) {
+                downloadBoardBtn.click();
+            }
+        });
+    }
 
     // Handle Adding New Memory Notes
     if (memoryForm && corkBoard) {
@@ -225,10 +334,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="note-date">${todayStr}</span>
                     <p>${escapeHtml(text)}</p>
                 </div>
+                <button class="note-share-btn" title="Share Memory"><i class="fa-solid fa-share-nodes"></i></button>
             `;
             
             corkBoard.appendChild(note);
             makeElementDraggable(note);
+            makeElementShareable(note);
             
             // Reset input form
             memoryText.value = '';
