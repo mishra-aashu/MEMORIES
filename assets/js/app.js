@@ -28,13 +28,18 @@ document.addEventListener('DOMContentLoaded', () => {
     let lastVolume = 0.7;
 
     // --- 1. Open Memory Box (Start Experience) ---
+    const heroShowcase = document.getElementById('heroShowcase');
     if (openBoxBtn && welcomeOverlay && mainApp && bgMusic) {
         openBoxBtn.addEventListener('click', () => {
             // Fade out welcome screen
             welcomeOverlay.style.opacity = '0';
             welcomeOverlay.style.pointerEvents = 'none';
             
-            // Fade in main site
+            // Fade in main site & hero section
+            if (heroShowcase) {
+                heroShowcase.style.opacity = '1';
+                heroShowcase.style.pointerEvents = 'auto';
+            }
             mainApp.style.opacity = '1';
             mainApp.style.pointerEvents = 'auto';
             

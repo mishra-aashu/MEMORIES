@@ -7,6 +7,9 @@
     <!-- SEO Meta Tags -->
     <meta name="description" content="A special dedication page filled with cozy moments, handwritten notes, and music. Built with love.">
     
+    <!-- Favicon (Lightweight, premium emoji based SVG favicon) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💝</text></svg>">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,32 +47,33 @@
     <!-- Floating Elements Container -->
     <div class="floating-container" id="floatingContainer"></div>
 
-    <!-- Main Container -->
-    <div class="app-container" id="mainApp" style="opacity: 0; pointer-events: none;">
-        <!-- Decorative Top Border -->
-        <div class="top-garland">
-            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
-            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
-            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
-            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
-            <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+    <!-- Fullscreen Hero Showcase Section -->
+    <section class="hero-showcase" id="heroShowcase" style="opacity: 0; pointer-events: none;">
+        <div class="hero-bg-container">
+            <img src="assets/images/hero.jpeg" alt="Memories Attic Watercolor" class="hero-fullscreen-image">
+            <div class="hero-overlay"></div>
         </div>
 
-        <!-- Header -->
         <header class="app-header">
+            <!-- Hanging Garland Inside Hero Header -->
+            <div class="top-garland">
+                <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+                <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+                <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+                <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+                <span class="flower"><i class="fa-solid fa-leaf"></i></span>
+            </div>
             <h1 class="app-title">The small gifts</h1>
             <p class="app-subtitle">Not luxury, just little pieces of care.</p>
         </header>
 
-        <!-- Hero Section: The Portrait Watercolor Illustration -->
-        <section class="hero-showcase">
-            <div class="frame-container">
-                <div class="vintage-frame">
-                    <img src="assets/images/hero.jpeg" alt="Memories Attic Watercolor" class="hero-image">
-                    <div class="frame-shadow"></div>
-                </div>
-            </div>
-        </section>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-chevron-down bouncing-arrow"></i>
+        </div>
+    </section>
+
+    <!-- Main Container -->
+    <div class="app-container" id="mainApp" style="opacity: 0; pointer-events: none;">
 
         <!-- Music Controller Section -->
         <section class="player-section">
