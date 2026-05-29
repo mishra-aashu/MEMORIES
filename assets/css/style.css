@@ -890,3 +890,60 @@ body {
         font-size: 0.9rem;
     }
 }
+
+/* Download & Share Button styles */
+.download-board-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--luxe-bleu);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    font-family: var(--font-sans);
+}
+.download-board-btn:hover {
+    background-color: var(--luxe-bleu-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.download-board-btn:active {
+    transform: translateY(0);
+}
+
+.note-share-btn {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    color: inherit;
+    opacity: 0.55;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    z-index: 10;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.note-share-btn:hover {
+    opacity: 0.95;
+    transform: scale(1.15);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.board-polaroid .note-share-btn {
+    bottom: 12px;
+    right: 12px;
+    color: #4E342E;
+}

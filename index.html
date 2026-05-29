@@ -149,6 +149,10 @@
             <h2 class="section-title">Memory Board</h2>
             <p class="section-desc">Click on the notes to read secret messages or add your own memory below!</p>
             
+            <button id="downloadBoardBtn" class="download-board-btn">
+                <i class="fa-solid fa-camera"></i> Save Board as Image
+            </button>
+            
             <div class="cork-board">
                 <!-- Pin 1 -->
                 <div class="board-note note-yellow" style="top: 10%; left: 8%; transform: rotate(-5deg);">
@@ -157,6 +161,7 @@
                         <span class="note-date">May 2026</span>
                         <p>"Chapter 1: A New Friend? :)"</p>
                     </div>
+                    <button class="note-share-btn" title="Share Memory"><i class="fa-solid fa-share-nodes"></i></button>
                 </div>
 
                 <!-- Pin 2 -->
@@ -166,6 +171,7 @@
                         <span class="note-date">Special Note</span>
                         <p>Secret note write me for you...</p>
                     </div>
+                    <button class="note-share-btn" title="Share Memory"><i class="fa-solid fa-share-nodes"></i></button>
                 </div>
 
                 <!-- Pin 3 (Polaroid Style photo) -->
@@ -177,6 +183,7 @@
                         </div>
                     </div>
                     <p class="polaroid-caption">Tea & Conversations ☕</p>
+                    <button class="note-share-btn" title="Share Memory"><i class="fa-solid fa-share-nodes"></i></button>
                 </div>
 
                 <!-- Pin 4 -->
@@ -186,6 +193,7 @@
                         <span class="note-date">Today</span>
                         <p>You can edit this board. Click below to add a new memory note!</p>
                     </div>
+                    <button class="note-share-btn" title="Share Memory"><i class="fa-solid fa-share-nodes"></i></button>
                 </div>
             </div>
 
@@ -214,6 +222,7 @@
     </div>
 
     <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>
