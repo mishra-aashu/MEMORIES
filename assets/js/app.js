@@ -1,6 +1,6 @@
 // --- Memories Cozy Dedication Logic ---
 
-document.addEventListener('DOMContentLoaded', () => {
+function initMemoriesApp() {
     // --- Element Selectors ---
     const welcomeOverlay = document.getElementById('welcomeOverlay');
     const openBoxBtn = document.getElementById('openBoxBtn');
@@ -45,12 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Start playing audio
             bgMusic.volume = lastVolume;
-            bgMusic.play().then(() => {
+            const playPromise = bgMusic.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    updatePlayingState(true);
+                }).catch(err => {
+                    console.log("Audio autoplay prevented. User action handles it.", err);
+                    updatePlayingState(false);
+                });
+            } else {
                 updatePlayingState(true);
-            }).catch(err => {
-                console.log("Audio autoplay prevented. User action handles it.", err);
-                updatePlayingState(false);
-            });
+            }
             
             // Clean up welcome screen from DOM after transition
             setTimeout(() => {
@@ -508,4 +513,10 @@ document.addEventListener('DOMContentLoaded', () => {
             element.style.cursor = 'grab';
         }
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMemoriesApp);
+} else {
+    initMemoriesApp();
+}
