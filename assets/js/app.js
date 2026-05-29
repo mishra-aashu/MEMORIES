@@ -143,9 +143,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomIcon = particles[Math.floor(Math.random() * particles.length)];
         particle.textContent = randomIcon;
         
-        // Random horizontal start position
-        const startX = Math.random() * window.innerWidth;
-        particle.style.left = `${startX}px`;
+        // Random horizontal start position (percentage-based to prevent mobile horizontal scroll)
+        const startPct = Math.random() * 90 + 5;
+        particle.style.left = `${startPct}%`;
         
         // Random size
         const size = Math.random() * (1.6 - 0.8) + 0.8;
