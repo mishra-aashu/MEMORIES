@@ -906,6 +906,33 @@ body {
     .polaroid-caption {
         font-size: 0.9rem;
     }
+    
+    /* Welcome Overlay mobile adjustments */
+    .welcome-overlay {
+        padding: 16px;
+    }
+    .overlay-card {
+        padding: 32px 20px;
+        border-radius: 20px;
+        max-width: 100%;
+    }
+    .overlay-card h2 {
+        font-size: 1.7rem;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    .overlay-card p {
+        font-size: 0.85rem;
+        margin-bottom: 24px;
+    }
+    .open-btn {
+        padding: 14px 28px;
+        font-size: 0.95rem;
+    }
+    .envelope-icon {
+        font-size: 3rem;
+        margin-bottom: 16px;
+    }
 }
 
 /* Download & Share Button styles */
